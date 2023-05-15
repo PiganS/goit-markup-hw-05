@@ -14,6 +14,7 @@
   --customers-icons: #8e8f99;
   --customers-hover-icons: #404bbf;
   --our-team-icons: #f4f4fd;
+  --button-borde: #e7e9fc;
 
   /* text color */
   --footer-text-color: #f4f4fd;
@@ -24,7 +25,12 @@
   --address-text-color: #434455;
   /* logo color */
   --primary-font: 'Roboto', 'sans-serif';
+
+  /* transition  */
+  --transition-delay: 2500ms;
+  --transition-cubic-bezier: cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 /*========================== global styles ===========================*/
 body {
   font-family: 'Roboto', sans-serif;
@@ -145,18 +151,40 @@ ul {
   padding-top: 24px;
   padding-bottom: 24px;
 }
+
 .menu-item:nth-last-child(-n + 1) {
   margin-right: 0;
 }
 
 .menu-link {
+  position: relative;
+  padding: 24px 0;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: var(--nav-color);
-  padding: 24px 0;
+
+  transition: color var(--transition-delay) cubic-bezier var(--transition-cubic-bezier);
 }
+.current.menu-link {
+  color: var(--button-hover-color);
+}
+
+.current.menu-link::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  display: block;
+  content: '';
+  width: 100%;
+  height: 4px;
+
+  background-color: var(--button-hover-color);
+  border-radius: 2px;
+}
+
 /* contacts  */
 .address {
   font-style: normal;
@@ -176,6 +204,8 @@ ul {
 
 .address-link {
   color: var(--address-text-color);
+
+  transition: color var(--transition-delay) cubic-bezier var(--transition-cubic-bezier);
 }
 
 /* ==============footer ======================*/
@@ -239,6 +269,8 @@ ul {
   justify-content: center;
   background-color: var(--button-normal-color);
   border-radius: 50%;
+
+  transition: background-color var(--transition-delay) cubic-bezier var(--transition-cubic-bezier);
 }
 
 .social-media-link:hover,
@@ -308,6 +340,13 @@ ul {
 }
 
 .modal-btn {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border: none;
+
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 16px;
@@ -316,17 +355,12 @@ ul {
   color: #ffffff;
   min-width: 169px;
   height: 56px;
-  background: #4d5ae5;
+  background: var(--button-normal-color);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   cursor: pointer;
 
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  border: none;
+  transition: background-color var(--transition-delay) cubic-bezier var(--transition-cubic-bezier);
 }
 
 /*================ possibilities================*/
@@ -400,7 +434,7 @@ ul {
   margin-right: 24px;
   width: 264px;
   border-radius: 0px 0px 4px 4px;
-  background-color: #ffffff;
+  background-color: var(--background-color);
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16),
     0px 2px 1px rgba(46, 47, 66, 0.08);
 }
@@ -479,6 +513,8 @@ ul {
   border: 1px solid var(--customers-icons);
   color: var(--customers-icons);
   border-radius: 4px;
+
+  transition: color var(--transition-delay) cubic-bezier var(--transition-cubic-bezier);
 }
 
 .customers-icons-link:hover,
@@ -513,7 +549,7 @@ ul {
 .button-item {
   padding: 12px 24px 12px 24px;
   border-radius: 4px;
-  border: 1px solid #e7e9fc;
+  border: 1px solid var(--button-borde);
   align-items: center;
 }
 
@@ -526,6 +562,11 @@ ul {
   color: var(--button-normal-color);
   background-color: var(--footer-text-color);
   cursor: pointer;
+
+  transition: background-color var(--transition-delay) cubic-bezier var(--transition-cubic-bezier),
+    color var(--transition-delay) cubic-bezier var(--transition-cubic-bezier),
+    border var(--transition-delay) cubic-bezier var(--transition-cubic-bezier),
+    box-shadow var(--transition-delay) cubic-bezier var(--transition-cubic-bezier);
 }
 
 .button-item:hover,
@@ -556,6 +597,7 @@ ul {
 
 .project-link {
   display: block;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-link:hover,
@@ -566,9 +608,9 @@ ul {
 
 .project-item-text {
   padding: 32px 16px;
-  border-bottom: 1px solid #e7e9fc;
-  border-left: 1px solid #e7e9fc;
-  border-right: 1px solid #e7e9fc;
+  border-bottom: 1px solid var(--button-borde);
+  border-left: 1px solid var(--button-borde);
+  border-right: 1px solid var(--button-borde);
 }
 .project-item .section-title {
   margin-bottom: 8px;
@@ -582,4 +624,111 @@ ul {
 .project-item .professions-list,
 .project-item .section-title {
   text-align: left;
+}
+
+/*=========overlay========*/
+
+.project-link-thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-item-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  transform: translateY(100%);
+  transition: transform var(--transition-delay) cubic-bezier var(--transition-cubic-bezier);
+
+  background-color: var(--button-normal-color);
+  padding: 40px 32px 164px;
+}
+
+.project-item-overlay-text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: #f4f4fd;
+}
+
+.project-link-thumb:hover .project-item-overlay,
+.project-link-thumb:focus .project-item-overlay {
+  transform: translatey(0);
+}
+
+/*==============modal-windov========== */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(46, 47, 66, 0.4);
+
+  transition: opacity var(--transition-delay) cubic-bezier var(--transition-cubic-bezier),
+    visibility var(--transition-delay) cubic-bezier var(--transition-cubic-bezier);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 408px;
+  height: 584px;
+
+  background-color: #fcfcfc;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.button-modal-close {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+
+  display: flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--button-borde);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+
+  transition: background-color var(--transition-delay) cubic-bezier var(--transition-cubic-bezier);
+}
+
+.button-modal-close:hover,
+.button-modal-close:focus {
+  background-color: var(--button-hover-color);
+}
+
+.icon-modal-close {
+  fill: #2e2f42;
+
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button-modal-close:hover .icon-modal-close,
+.button-modal-close:focus .icon-modal-close {
+  fill: #ffffff;
 }
