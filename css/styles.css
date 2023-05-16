@@ -170,7 +170,7 @@ ul {
 .current.menu-link::after {
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -1px;
 
   display: block;
   content: '';
@@ -473,6 +473,7 @@ ul {
   align-items: center;
   border-radius: 50%;
   background-color: var(--button-normal-color);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .our-team-icons {
@@ -510,7 +511,8 @@ ul {
   color: var(--customers-icons);
   border-radius: 4px;
 
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .customers-icons-link:hover,
@@ -559,9 +561,9 @@ ul {
   background-color: var(--footer-text-color);
   cursor: pointer;
 
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1), border 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button-item:hover,
@@ -628,20 +630,6 @@ ul {
   overflow: hidden;
 }
 
-.project-item-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  transform: translateY(100%);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  background-color: var(--button-normal-color);
-  padding: 40px 32px 164px;
-}
-
 .project-item-overlay-text {
   font-style: normal;
   font-weight: 400;
@@ -651,8 +639,22 @@ ul {
   color: #f4f4fd;
 }
 
-.project-link-thumb:hover .project-item-overlay,
-.project-link-thumb:focus .project-item-overlay {
+.project-item-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 40px 32px 164px;
+
+  background-color: var(--button-normal-color);
+
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-link:hover .project-item-overlay,
+.project-link:focus .project-item-overlay {
   transform: translatey(0);
 }
 
@@ -666,7 +668,8 @@ ul {
   width: 100%;
   height: 100%;
   background-color: rgba(46, 47, 66, 0.4);
-  transition: opacity 250ms cubic-bezier (0.4, 0, 0.2, 1);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .backdrop.is-hidden {
@@ -681,33 +684,42 @@ ul {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 408px;
+  min-height: 576px;
   height: 584px;
   background-color: #fcfcfc;
+  border-radius: 4px;
+
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
     0px 2px 1px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
 }
 
 .button-modal-close {
   position: absolute;
   right: 24px;
   top: 24px;
-  display: flex;
+
   width: 24px;
   height: 24px;
+  border-radius: 50%;
+  display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--button-borde);
   border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
+  padding: 0;
+
   cursor: pointer;
 
-  transition: background-color 250ms cubic-bezier (0.4, 0, 0.2, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button-modal-close:hover,
 .button-modal-close:focus {
   background-color: var(--button-hover-color);
+  border: none;
 }
 
 .icon-modal-close {
