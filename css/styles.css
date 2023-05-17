@@ -27,7 +27,7 @@
   --primary-font: 'Roboto', 'sans-serif';
 }
 
-/*========================== global styles ===========================*/
+/*==========================global styles===========================*/
 body {
   font-family: 'Roboto', sans-serif;
   color: #434455;
@@ -637,9 +637,7 @@ ul {
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: #f4f4fd;
-}
 
-.project-item-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -653,8 +651,8 @@ ul {
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.project-link:hover .project-item-overlay,
-.project-link:focus .project-item-overlay {
+.project-link:hover .project-item-overlay-text,
+.project-link:focus .project-item-overlay-text {
   transform: translateY(0%);
 }
 
