@@ -655,7 +655,7 @@ ul {
 
 .project-link:hover .project-item-overlay,
 .project-link:focus .project-item-overlay {
-  transform: translatey(0);
+  transform: translateY(0%);
 }
 
 /*==============modal-windov========== */
